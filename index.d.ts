@@ -37,6 +37,8 @@ declare module "react-native-ble-manager" {
     options?: ScanOptions
   ): Promise<void>;
   export function stopScan(): Promise<void>;
+  export function advertise(settings, mfgInfo, serviceInfo): Promise<void>;
+  export function stopAdvertising(): Promise<void>;
   export function connect(peripheralID: string): Promise<void>;
   export function disconnect(
     peripheralID: string,
@@ -112,7 +114,10 @@ declare module "react-native-ble-manager" {
   // [Android only API 21+]
   export function requestMTU(peripheralID: string, mtu: number): Promise<void>;
 
-  export function createBond(peripheralID: string): Promise<void>;
+  export function createBond(
+    peripheralID: string,
+    peripheralPin?: string
+  ): Promise<void>;
   export function removeBond(peripheralID: string): Promise<void>;
   export function getBondedPeripherals(): Promise<Peripheral[]>;
   export function removePeripheral(peripheralID: string): Promise<void>;
